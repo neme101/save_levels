@@ -1,0 +1,16 @@
+.page-header
+  %h1
+    Details for level
+    =@level.id
+    %small Data for selected level
+.row
+  .well
+    %p
+      %strong Id:
+      =@level.id
+    %p
+      %strong Created at: 
+      =@level.created_at
+    %p
+      %strong Data:
+    %code= @level.data

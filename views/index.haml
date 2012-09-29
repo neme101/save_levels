@@ -1,0 +1,44 @@
+.page-header
+  %h1
+    Stored Levels
+    %small List of all stored levels
+.row
+  .span10
+    %h2 Stored Levels
+    %table.table.table-striped.table-bordered.list
+      %thead
+        %tr
+          %th Id
+          %th City
+          %th Created at
+          %th
+          %th
+      %tfoot
+        %tr
+          %th Id
+          %th City
+          %th Created at
+          %th
+          %th
+      %tbody
+      -@levels.each do |level|
+        %tr
+          %td= level.id
+          %td= level.city
+          %td= level.created_at
+          %td
+            %a.btn.primary{:href => url("/level/#{level.id}")} View Data
+          %td
+            %form.delete{:action => "level/#{level.id}", :method => 'POST'}
+              %input{:type => 'hidden', :name => '_method', :value => 'delete'}
+              %input.btn.btn-danger{:type => 'submit', :value => 'Delete'}
+  .span2
+    %form.pull-right.form-horizontal{:action => "/levels", :method => "POST"}
+      %fieldset
+        %legend New Level
+        .control-group
+          %textarea{:name => "level[data]"}
+          %input{:type => "hidden", :name => "level[created_at]", :value => Time.now.strftime("%Y-%m-%d %H:%M:%S")}
+        .control-group
+          .controls
+            %input.btn{:type => "submit", :value => "Save"}
