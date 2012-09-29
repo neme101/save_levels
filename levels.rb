@@ -73,10 +73,10 @@ class Levels < Sinatra::Base
   end
 
   delete '/level/:id' do
-    level = Level.get(params[:id])
-    if !level
+    if !level = Level.get(params[:id])
       error 404
     end
+
     level.destroy
     proper_response(false,{:status => 1}.to_json,'/')
   end
