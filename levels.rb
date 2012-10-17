@@ -22,7 +22,7 @@ DataMapper.auto_upgrade!
 
 # Controller
 class Levels < Sinatra::Base
-  
+
   helpers do
     def proper_response(haml_view,json_data,redirect=false)
       request.accept.each do |type|
@@ -48,7 +48,7 @@ class Levels < Sinatra::Base
   end
 
   get '/levels/last', :provides => [:html,:json] do
-    if !@level = Level.last() 
+    if !@level = Level.last()
       error 404
     end
 
